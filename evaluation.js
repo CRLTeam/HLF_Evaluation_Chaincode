@@ -30,11 +30,12 @@ class Evaluation extends Contract {
     }
 
     // Call the interop function
-    async callInterop(ctx, _interopDID, _func, _value, _callerDID, _nonce, _sig) {
+    async callInterop(ctx, _interopDID, _func, _callerDID, _nonce, _sig) {
+        const _stateData = await ctx.stub.getState('StateData'); 
         let callData = {
             interopDID: _interopDID,
             func: _func,
-            value: _value,
+            value: _stateData,
             callerDID, _callerDID,
             nonce: _nonce,
             sig: _sid,                              // encrypted hash of previous values
